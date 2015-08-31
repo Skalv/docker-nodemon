@@ -7,4 +7,4 @@ RUN npm install -g nodemon coffee-script
 RUN mkdir -p /var/www/myapp
 WORKDIR /var/www/myapp
 
-CMD ["bash"]
+CMD ["nodemon","server.coffee"]
