@@ -1,10 +1,19 @@
-FROM node:0.10
+# https://hub.docker.com/r/iain/nodemon/~/dockerfile/
 
-MAINTAINER Florent Boutin <fboutin76@gmail.com>
+FROM ubuntu 
 
-RUN npm install -g nodemon coffee-script
+# Install Node.js 
+RUN apt-get update
+RUN apt-get install -y curl
 
-RUN mkdir -p /var/www/myapp
-WORKDIR /var/www/myapp
+# Use 'n' to install Node.js RUN mkdir -p /usr/local/bin
+RUN curl https://raw.github.com/visionmedia/n/master/bin/n -o /usr/local/bin/n
+RUN chmod 755 /usr/local/bin/n
+RUN chown root:root /usr/local/bin/n
+RUN /usr/local/bin/n stable || true
 
-CMD ["nodemon","server.coffee"]
+# Install file system watcher to auto-reload node during development 
+RUN /usr/local/bin/npm install -g nodemon
+
+# Define default command. 
+CMD ["/usr/local/bin/nodemon","server.coffee"]
