@@ -1,9 +1,10 @@
 # https://hub.docker.com/r/iain/nodemon/~/dockerfile/
 
-FROM iain/nodemon
+FROM node
 
-RUN /usr/local/bin/npm install -g coffee-script
+RUN npm install -g nodemon@1.8.1
+RUN npm install -g coffee-script
 WORKDIR /var/www/myapp
 
 # Define default command. 
-CMD ["/usr/local/bin/nodemon","server.coffee"]
+CMD ["nodemon","-L", "server.coffee"]
