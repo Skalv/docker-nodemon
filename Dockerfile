@@ -6,7 +6,8 @@ FROM ubuntu
 RUN apt-get update
 RUN apt-get install -y curl
 
-# Use 'n' to install Node.js RUN mkdir -p /usr/local/bin
+# Use 'n' to install Node.js 
+RUN mkdir -p /usr/local/bin
 RUN curl https://raw.github.com/visionmedia/n/master/bin/n -o /usr/local/bin/n
 RUN chmod 755 /usr/local/bin/n
 RUN chown root:root /usr/local/bin/n
